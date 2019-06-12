@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 //导入 电影列表页面
 import 'movie/list.dart';
 
@@ -81,9 +82,9 @@ class MyHome extends StatelessWidget {
             ), //底部的TabBar，需要提供一个Controller，比如DefaultTabController,
           ),
           body: TabBarView(children: <Widget>[
-            MovieList(),
-            MovieList(),
-            MovieList(),
+            MovieList(mt:"11"),
+            MovieList(mt:"22"),
+            MovieList(mt:"33"),
           ]),
         ));
   }
