@@ -82,9 +82,9 @@ class MyHome extends StatelessWidget {
             ), //底部的TabBar，需要提供一个Controller，比如DefaultTabController,
           ),
           body: TabBarView(children: <Widget>[
-            MovieList(mt:"11"),
-            MovieList(mt:"22"),
-            MovieList(mt:"33"),
+            MovieList(mt:"in_theaters"),
+            MovieList(mt:"coming_soon"),
+            MovieList(mt:"top250"),
           ]),
         ));
   }
