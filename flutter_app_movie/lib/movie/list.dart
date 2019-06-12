@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class MovieList extends StatefulWidget {
+  final String mt;
+
   //固定写法
   //MovieList({Key key}):super(key:key)
   //@required 设置为必传项;
-  MovieList({Key key,this.mt}) : super(key: key)
+  MovieList({Key key,this.mt}) : super(key: key){}
 
-  final String mt;
 
   @override
   _MovieListState createState() {
