@@ -19,7 +19,7 @@ class MovieList extends StatefulWidget {
 }
 
 //有状态控件，必须结合一个状态管理类来实现
-class _MovieListState extends State<MovieList> {
+class _MovieListState extends State<MovieList> with AutomaticKeepAliveClientMixin<MovieList>{
   //默认显示第一条数据
   int page = 1;
 
@@ -106,4 +106,7 @@ class _MovieListState extends State<MovieList> {
       total = result["total"];
     });
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
