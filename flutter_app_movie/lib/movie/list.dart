@@ -53,7 +53,7 @@ class _MovieListState extends State<MovieList> {
           return GestureDetector(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (BuildContext ctx){
-                return MovieDetail();
+                return MovieDetail(id: mitem["id"],title: mitem["title"],);
               }));
             },
             child: Container(
