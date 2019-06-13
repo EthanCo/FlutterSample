@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MovieDetail extends StatefulWidget {
-  MovieDetail({Key key,@required this.id,@required this.title}):super(key:key);
+  MovieDetail({Key key, @required this.id, @required this.title})
+      : super(key: key);
 
   final String id;
 
@@ -16,6 +17,17 @@ class MovieDetail extends StatefulWidget {
 class _MovieDetailState extends State<MovieDetail> {
   @override
   Widget build(BuildContext context) {
-    return Text("id:${widget.id} title:${widget.title}");
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Text(
+          "电影ID为:${widget.id}",
+          style: TextStyle(fontSize: 16),
+        ),
+      ),
+    );
   }
 }
