@@ -17,28 +17,47 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Container(
-              height: 160,
-              child: Swiper(
-                itemCount: _imageUrls.length,
-                autoplay: true,
-                itemBuilder: (BuildContext context, int index) {
-                  return Image.network(
-                    _imageUrls[index],
-                    fit: BoxFit.fill,
-                  );
+        body: MediaQuery.removePadding(
+            removeTop: true,
+            context: context,
+            child: NotificationListener(
+                //滑动监听
+                onNotification: (scrollNotification) {
+                  if (scrollNotification is ScrollNotification &&
+                      scrollNotification.depth == 0) {
+                    //滚动并且列表滑动的时候
+                    _onScroll(scrollNotification.metrics.pixels);
+                  }
                 },
-                pagination: SwiperPagination(),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+                child: ListView(
+                  //padding: EdgeInsets.all(0),
+                  children: <Widget>[
+                    Container(
+                      height: 160,
+                      child: Swiper(
+                        itemCount: _imageUrls.length,
+                        autoplay: true,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Image.network(
+                            _imageUrls[index],
+                            fit: BoxFit.fill,
+                          );
+                        },
+                        pagination: SwiperPagination(),
+                      ),
+                    ),
+                    Container(
+                      height: 800,
+                      child: ListTile(
+                        title: Text("haha"),
+                      ),
+                    )
+                  ],
+                ))));
+  }
+
+  void _onScroll(double offset) {
+    print("offset:$offset");
   }
 }
