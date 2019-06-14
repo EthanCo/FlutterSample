@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
+const APPBAR_SCROLL_OFFSET = 100;
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() {
@@ -14,11 +16,14 @@ class _HomePageState extends State<HomePage> {
     "https://b-ssl.duitang.com/uploads/item/201507/07/20150707100822_zCAFQ.jpeg",
     "http://img.mp.itc.cn/upload/20160428/b52be3dc215d4ecd844bf922be46f278_th.jpg",
   ];
+  double appBarAlpha = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: MediaQuery.removePadding(
+        body: Stack(
+      children: <Widget>[
+        MediaQuery.removePadding(
             removeTop: true,
             context: context,
             child: NotificationListener(
@@ -54,10 +59,35 @@ class _HomePageState extends State<HomePage> {
                       ),
                     )
                   ],
-                ))));
+                ))),
+        Opacity(
+          opacity: appBarAlpha,
+          child: Container(
+            height: 80,
+            decoration: BoxDecoration(color: Colors.white),
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: Text("首页"),
+              ),
+            ),
+          ),
+        )
+      ],
+    ));
   }
 
   void _onScroll(double offset) {
-    print("offset:$offset");
+    double alpha = offset / APPBAR_SCROLL_OFFSET;
+    if (alpha < 0) {
+      alpha = 0;
+    } else if (alpha > 1) {
+      alpha = 1;
+    }
+
+    setState(() {
+      appBarAlpha = alpha;
+    });
+    print("offset:$offset appBarAlpha:$appBarAlpha");
   }
 }
